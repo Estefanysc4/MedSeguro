@@ -1,0 +1,18 @@
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--lav) 0%,var(--bg) 60%);}
+.auth-card{background:var(--white);border-radius:24px;padding:40px 36px;width:400px;border:1.5px solid var(--lav-b);}
+.auth-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+.auth-logo-ico{width:44px;height:44px;background:var(--lav);border-radius:13px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--lav-b);}
+.auth-logo-ico i{font-size:22px;color:var(--lav-mid);}
+.auth-logo-txt .app{font-family:var(--fh);font-size:20px;font-weight:800;color:var(--lav-deep);}
+.auth-logo-txt .tag{font-size:11px;color:var(--lav-mid);font-weight:600;}
+.auth-title{font-size:22px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.auth-sub{font-size:13px;color:var(--text3);margin-bottom:28px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--text2);margin-bottom:6px;}
+.field .inp{display:flex;align-items:center;gap:10px;background:var(--bg);border:1.5px solid var(--lav-b);border-radius:11px;padding:11px 14px;}
+.field .inp i{font-size:16px;color:var(--lav-mid);flex-shrink:0;}
+.field .inp input{flex:1;border:none;background:transparent;font-size:13px;color:var(--text);font-family:var(--f);outline:none;font-weight:600;}
+.field .inp input::placeholder{color:var(--text3);font-weight:400;}
+.btn-login{width:100%;background:var(--lav-mid);color:#fff;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:800;font-family:var(--f);cursor:pointer;margin-top:4px;}
+.btn-login:hover{opacity:.9;}
+.auth-err{background:var(--rose);border:1.5px solid var(--rose-b);border-radius:10px;padding:10px 14px;font-size:12px;font-weight:700;color:var(--rose-deep);margin-bottom:14px;display:none;}

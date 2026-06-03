@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MedSeguro</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<link rel="stylesheet" href="css/variables.css"/>
+<link rel="stylesheet" href="css/auth.css"/>
+<link rel="stylesheet" href="css/layout.css"/>
+<link rel="stylesheet" href="css/components.css"/>
+<link rel="stylesheet" href="css/screens.css"/>
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════════ -->
+<div class="auth-wrap" id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-ico"><i class="ti ti-heart-rate-monitor"></i></div>
+      <div class="auth-logo-txt">
+        <div class="app">MedSeguro</div>
+        <div class="tag">Medicación segura · Sin errores</div>
+      </div>
+    </div>
+    <div class="auth-title">Bienvenida de nuevo</div>
+    <div class="auth-sub">Ingresa con tu cuenta institucional</div>
+    <div class="auth-err" id="auth-err">Completa usuario y contraseña</div>
+    <div class="field">
+      <label>Usuario</label>
+      <div class="inp"><i class="ti ti-user"></i><input id="inp-email" type="email" placeholder="correo@hospital.co"/></div>
+    </div>
+    <div class="field">
+      <label>Contraseña</label>
+      <div class="inp">
+        <i class="ti ti-lock"></i>
+        <input id="inp-pwd" type="password" placeholder="••••••••"/>
+        <i class="ti ti-eye" id="eye-btn" style="cursor:pointer;color:var(--text3);font-size:16px;"></i>
+      </div>
+    </div>
+    <button class="btn-login" id="login-btn">Ingresar al sistema</button>
+  </div>
+</div>
+
+<!-- ══ APP ════════════════════════════════════════════════════ -->
+<div class="app-layout" id="app-screen" style="display:none;">
+
+  <aside class="sidebar">
+    <div class="sb-logo"><i class="ti ti-heart-rate-monitor"></i><span>MedSeguro</span></div>
+    <nav class="sb-nav">
+      <div class="sb-lbl">Principal</div>
+      <div class="sb-item active" data-screen="home"><i class="ti ti-layout-dashboard"></i>Panel general</div>
+      <div class="sb-item" data-screen="patients"><i class="ti ti-users"></i>Pacientes<span class="sb-badge blue">18</span></div>
+      <div class="sb-item" data-screen="meds"><i class="ti ti-pill"></i>Medicamentos</div>
+      <div class="sb-item" data-screen="scan"><i class="ti ti-scan"></i>Escanear</div>
+      <div class="sb-lbl" style="margin-top:8px;">Monitoreo</div>
+      <div class="sb-item" data-screen="alerts"><i class="ti ti-bell"></i>Alertas<span class="sb-badge" id="alert-badge">4</span></div>
+      <div class="sb-item" data-screen="rondas"><i class="ti ti-calendar-check"></i>Rondas</div>
+      <div class="sb-item" data-screen="historial"><i class="ti ti-history"></i>Historial</div>
+      <div class="sb-lbl" style="margin-top:8px;">Cuenta</div>
+      <div class="sb-item" data-screen="perfil"><i class="ti ti-user-circle"></i>Mi perfil</div>
+    </nav>
+    <div class="sb-user">
+      <div class="sb-user-row">
+        <div class="sb-av">ES</div>
+        <div class="sb-user-info">
+          <div class="u-name">Estefany Suárez</div>
+          <div class="u-role">Enfermera · Piso 3</div>
+        </div>
+        <div class="sb-logout" id="logout-btn" title="Cerrar sesión"><i class="ti ti-logout"></i></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- HOME -->
+    <div class="screen active" id="s-home">
+      <div class="page-top">
+        <div><div class="page-title">Panel general</div><div class="page-sub">Turno noche · Piso 3 · 18 pacientes activos</div></div>
+        <div class="top-actions">
+          <button class="btn-sec" onclick="goScreen('scan')"><i class="ti ti-scan"></i>Escanear</button>
+          <button class="btn-primary" onclick="goScreen('alerts')"><i class="ti ti-bell"></i>Ver alertas</button>
+        </div>
+      </div>
+      <div class="alert-banner" onclick="goScreen('alerts')">
+        <div class="ab-dot"></div>
+        <span class="ab-txt">2 alertas críticas requieren atención — FC elevada (Rodríguez) · SpO₂ baja (Mora)</span>
+        <i class="ti ti-chevron-right ab-arr"></i>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card lav"><div class="stat-ico"><i class="ti ti-users"></i></div><div class="stat-num">18</div><div class="stat-lbl">Pacientes activos</div><div class="stat-trend">↑ 2 desde ayer</div></div>
+        <div class="stat-card mint"><div class="stat-ico"><i class="ti ti-check"></i></div><div class="stat-num">47</div><div class="stat-lbl">Verificaciones hoy</div><div class="stat-trend">100% sin errores</div></div>
+        <div class="stat-card peach"><div class="stat-ico"><i class="ti ti-pill"></i></div><div class="stat-num">6</div><div class="stat-lbl">Dosis próximas (2h)</div><div class="stat-trend">Próxima en 15 min</div></div>
+        <div class="stat-card rose"><div class="stat-ico"><i class="ti ti-alert-triangle"></i></div><div class="stat-num">2</div><div class="stat-lbl">Alertas críticas</div><div class="stat-trend">Requieren atención</div></div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-hd"><span class="panel-title">Pacientes — Piso 3</span><span class="panel-tag">En tiempo real</span></div>
+          <div class="tbl-wrap"><table><thead><tr><th>Paciente</th><th>FC</th><th>SpO₂</th><th>PA</th><th>Estado</th><th>Próx. dosis</th><th></th></tr></thead><tbody id="home-patients-tbl"></tbody></table></div>
+        </div>
+        <div class="panel">
+          <div class="panel-hd"><span class="panel-title">Alertas activas</span><span class="panel-tag red">4 nuevas</span></div>
+          <div class="alert-list" id="home-alerts-list"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-title">Próximas dosis</span></div>
+        <div id="home-meds-list"></div>
+      </div>
+    </div>
+
+    <!-- PATIENTS -->
+    <div class="screen" id="s-patients">
+      <div class="page-top">
+        <div><div class="page-title">Pacientes</div><div class="page-sub">Piso 3 · 18 pacientes activos</div></div>
+        <div class="top-actions">
+          <div class="search-box"><i class="ti ti-search"></i><input id="patient-search" placeholder="Buscar paciente o habitación..."/></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="tbl-wrap"><table><thead><tr><th>Paciente</th><th>Habitación</th><th>FC</th><th>SpO₂</th><th>PA</th><th>Estado</th><th>Médico</th><th></th></tr></thead><tbody id="all-patients-tbl"></tbody></table></div>
+      </div>
+    </div>
+
+    <!-- MEDS -->
+    <div class="screen" id="s-meds">
+      <div class="page-top"><div><div class="page-title">Medicamentos</div><div class="page-sub">Programación del turno actual</div></div></div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-title">Todas las dosis del turno</span><span class="panel-tag">Turno noche</span></div>
+        <div id="all-meds-list"></div>
+      </div>
+    </div>
+
+    <!-- SCAN -->
+    <div class="screen" id="s-scan">
+      <div class="page-top"><div><div class="page-title">Escanear medicamento</div><div class="page-sub">Verificación doble: pulsera + código del medicamento</div></div></div>
+      <div style="display:grid;grid-template-columns:380px 1fr;gap:16px;">
+        <div class="panel" style="padding:20px;">
+          <div class="scan-vf">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+            <i class="ti ti-qrcode"></i>
+            <div class="scan-line"></div>
+          </div>
+          <div style="text-align:center;font-size:13px;font-weight:700;color:var(--text2);margin-bottom:16px;" id="scan-hint">Escanea la pulsera del paciente</div>
+          <div style="display:flex;justify-content:center;gap:8px;margin-bottom:16px;">
+            <div class="step-n lav" id="step1">1</div>
+            <div class="step-n mint" id="step2">2</div>
+            <div class="step-n peach" id="step3">3</div>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;" id="scan-btn"><i class="ti ti-scan"></i><span id="scan-btn-lbl">Escanear pulsera</span></button>
+          <button style="width:100%;background:none;border:none;font-size:12px;color:var(--text3);font-weight:700;cursor:pointer;margin-top:10px;font-family:var(--f);" id="scan-reset">Reiniciar</button>
+        </div>
+        <div>
+          <div class="confirm-card" id="scan-confirm" style="display:none;">
+            <div class="confirm-top">
+              <div class="confirm-ico"><i class="ti ti-circle-check"></i></div>
+              <div><div class="confirm-title">Coincidencia encontrada</div><div class="confirm-sub">Verificar antes de administrar</div></div>
+            </div>
+            <div class="confirm-row"><span class="k">Paciente</span><span class="v">Juan Castro</span></div>
+            <div class="confirm-row"><span class="k">Habitación</span><span class="v">302 · Cama A</span></div>
+            <div class="confirm-row"><span class="k">Medicamento</span><span class="v">Omeprazol 20mg</span></div>
+            <div class="confirm-row"><span class="k">Dosis</span><span class="v">1 tableta oral</span></div>
+            <div class="confirm-row"><span class="k">Hora</span><span class="v">Ahora (15:00)</span></div>
+            <button class="btn-confirm" id="confirm-btn">Confirmar administración</button>
+          </div>
+          <div class="panel" style="padding:20px;">
+            <div class="sec-lbl" style="margin-bottom:12px;">Pasos del proceso</div>
+            <div class="step-r"><div class="step-n lav">1</div><div class="step-txt"><div class="st-t">Escanea la pulsera</div><div class="st-s">Código en la muñeca del paciente</div></div></div>
+            <div class="step-r"><div class="step-n mint">2</div><div class="step-txt"><div class="st-t">Escanea el medicamento</div><div class="st-s">Etiqueta del blíster o frasco</div></div></div>
+            <div class="step-r"><div class="step-n peach">3</div><div class="step-txt"><div class="st-t">Confirma y administra</div><div class="st-s">Solo si todo coincide correctamente</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="screen" id="s-alerts">
+      <div class="page-top"><div><div class="page-title">Alertas</div><div class="page-sub">Turno noche · Piso 3</div></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="panel">
+          <div class="panel-hd"><span class="panel-title">Alertas activas</span><span class="panel-tag red" id="active-alert-count">4 activas</span></div>
+          <div class="alert-list" id="full-alerts-list"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-hd"><span class="panel-title">Resueltas hoy</span><span class="panel-tag">3 resueltas</span></div>
+          <div class="alert-list">
+            <div class="alert-item ok"><div class="al-dot green"></div><div class="al-body"><div class="al-t">Verificación completada</div><div class="al-s">J. Castro · Omeprazol 20mg · OK</div></div><div class="al-time">12:30</div></div>
+            <div class="alert-item ok"><div class="al-dot green"></div><div class="al-body"><div class="al-t">Dosis administrada</div><div class="al-s">A. Corredor · Ibuprofeno 400mg</div></div><div class="al-time">11:00</div></div>
+            <div class="alert-item ok"><div class="al-dot green"></div><div class="al-body"><div class="al-t">Ronda completada</div><div class="al-s">Piso 3 · Turno mañana</div></div><div class="al-time">09:15</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RONDAS -->
+    <div class="screen" id="s-rondas">
+      <div class="page-top"><div><div class="page-title">Rondas</div><div class="page-sub">Programación del turno noche · Piso 3</div></div><button class="btn-primary"><i class="ti ti-plus"></i>Nueva ronda</button></div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-title">Rondas de hoy</span></div>
+        <div class="ronda-item"><div class="ronda-num done"><i class="ti ti-check" style="font-size:13px;"></i></div><div class="ronda-info"><div class="ronda-title">Ronda matutina — Piso 3</div><div class="ronda-sub">18 pacientes · Completada por Enf. García</div></div><div class="ronda-time done">08:00</div></div>
+        <div class="ronda-item"><div class="ronda-num done"><i class="ti ti-check" style="font-size:13px;"></i></div><div class="ronda-info"><div class="ronda-title">Ronda tarde — Piso 3</div><div class="ronda-sub">18 pacientes · Completada por Enf. Suárez</div></div><div class="ronda-time done">14:00</div></div>
+        <div class="ronda-item"><div class="ronda-num pending">3</div><div class="ronda-info"><div class="ronda-title">Ronda noche — Piso 3</div><div class="ronda-sub">18 pacientes · Pendiente</div></div><div class="ronda-time pending">20:00</div></div>
+        <div class="ronda-item"><div class="ronda-num pending">4</div><div class="ronda-info"><div class="ronda-title">Ronda madrugada — Piso 3</div><div class="ronda-sub">18 pacientes · Pendiente</div></div><div class="ronda-time pending">02:00</div></div>
+        <div class="ronda-item"><div class="ronda-num late"><i class="ti ti-alert-triangle" style="font-size:13px;"></i></div><div class="ronda-info"><div class="ronda-title">Ronda UCI — Piso 4</div><div class="ronda-sub">5 pacientes · Vencida hace 20 min</div></div><div class="ronda-time late">Vencida</div></div>
+      </div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="screen" id="s-historial">
+      <div class="page-top"><div><div class="page-title">Historial</div><div class="page-sub">Registro de medicamentos administrados hoy</div></div></div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-title">Administraciones del turno</span><span class="panel-tag">47 registros</span></div>
+        <div id="historial-list"></div>
+      </div>
+    </div>
+
+    <!-- PERFIL -->
+    <div class="screen" id="s-perfil">
+      <div class="page-top"><div><div class="page-title">Mi perfil</div><div class="page-sub">Configuración del turno y datos personales</div></div></div>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-av-big">ES</div>
+          <div class="profile-name">Estefany Suárez</div>
+          <div class="profile-role">Enfermera Jefe · Piso 3</div>
+          <div style="margin-top:20px;">
+            <div class="profile-info-row"><i class="ti ti-mail"></i><span class="k">Correo</span><span class="v">e.suarez@hcb.co</span></div>
+            <div class="profile-info-row"><i class="ti ti-building-hospital"></i><span class="k">Hospital</span><span class="v">HCB Bogotá</span></div>
+            <div class="profile-info-row"><i class="ti ti-stairs"></i><span class="k">Piso asignado</span><span class="v">Piso 3</span></div>
+            <div class="profile-info-row"><i class="ti ti-id-badge"></i><span class="k">ID</span><span class="v">#ENF-0342</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="turno-card">
+            <div class="sec-lbl" style="margin-bottom:4px;">Configuración del turno</div>
+            <div class="turno-row"><span class="turno-lbl">Turno actual</span><span class="turno-val">Noche (20:00 – 06:00)</span></div>
+            <div class="turno-row"><span class="turno-lbl">Pacientes a cargo</span><span class="turno-val">18</span></div>
+            <div class="turno-row"><span class="turno-lbl">Rondas completadas</span><span class="turno-val">2 / 4</span></div>
+            <div class="turno-row"><span class="turno-lbl">Medicamentos verificados</span><span class="turno-val">47</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Modal paciente -->
+<div class="modal-overlay" id="patient-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-av" id="m-av"></div>
+      <div class="modal-info">
+        <div class="modal-name" id="m-name"></div>
+        <div class="modal-room" id="m-room"></div>
+        <span class="chip" id="m-chip" style="margin-top:6px;"></span>
+      </div>
+      <div class="modal-close" onclick="closeModal()"><i class="ti ti-x"></i></div>
+    </div>
+    <div class="modal-body">
+      <div class="sec-lbl">Signos vitales</div>
+      <div class="vitals-row">
+        <div class="vital-box rose"><div class="vb-val" id="m-fc"></div><div class="vb-lbl">FC bpm</div></div>
+        <div class="vital-box mint"><div class="vb-val" id="m-spo"></div><div class="vb-lbl">SpO₂</div></div>
+        <div class="vital-box sky"><div class="vb-val" id="m-pa"></div><div class="vb-lbl">Presión arterial</div></div>
+      </div>
+      <div class="sec-lbl">Medicamentos activos</div>
+      <div id="m-meds" style="margin-bottom:14px;"></div>
+      <div class="sec-lbl">Anotaciones</div>
+      <div class="note-box" id="m-note"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="ti ti-circle-check"></i>
+  <div>
+    <div class="toast-tt" id="toast-tt">Medicamento verificado</div>
+    <div class="toast-ts" id="toast-ts">Sin errores · Registro guardado</div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/render.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

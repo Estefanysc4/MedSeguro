@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Syne:wght@700;800&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --lav:#EDE9FE;--lav-b:#D0C8F8;--lav-mid:#7C6FCD;--lav-deep:#3D2E8A;
+  --mint:#D6F5EB;--mint-b:#A0E8D0;--mint-mid:#2EBD8A;--mint-deep:#0A5C3F;
+  --peach:#FFE8DD;--peach-b:#F9C4A8;--peach-mid:#F47B4F;--peach-deep:#B84520;
+  --sky:#DBEEFF;--sky-b:#A8CFFA;--sky-mid:#3D8FE8;--sky-deep:#1050A0;
+  --rose:#FFE0EC;--rose-b:#F9B8D0;--rose-mid:#E05080;--rose-deep:#7A1A38;
+  --lemon:#FFF6CC;--lemon-b:#FFE066;--lemon-mid:#DBA800;--lemon-deep:#7A5A00;
+  --bg:#F5F3FF;--white:#fff;--text:#1A1035;--text2:#5A5270;--text3:#9590B0;
+  --sidebar:220px;
+  --f:'Nunito',sans-serif;
+  --fh:'Syne',sans-serif;
+}
+
+body{font-family:var(--f);background:var(--bg);color:var(--text);min-height:100vh;}
